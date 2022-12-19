@@ -6,7 +6,7 @@ function funcao1()
 
     try {
         funcao2();
-    } catch (RuntimeException | DivisionByZeroError $erroOuExcecao) {
+    } catch (Throwable $erroOuExcecao) {
         echo $erroOuExcecao->getMessage() . PHP_EOL;
         echo $erroOuExcecao->getLine() . PHP_EOL;
         echo $erroOuExcecao->getTraceAsString() . PHP_EOL;
@@ -23,8 +23,10 @@ function funcao2()
     // $arrayFixo = new SplFixedArray(2);
     // $arrayFixo[3] = 'Valor';
 
+    intdiv(1, 0);
+    throw new BadFunctionCallException('Essa é a mensagem de exceção');
     throw new RuntimeException('Essa é a mensagem de exceção');
-    
+
     for ($i = 1; $i <= 5; $i++) {
         echo $i . PHP_EOL;
     }
